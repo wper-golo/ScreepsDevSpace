@@ -16,7 +16,7 @@ git clone https://github.com/wper-golo/ScreepsDevSpace.git
 ```bash
 npm install
 ```
-4. 申请Screep World Token
+4. 申请Screeps World Token
 token 可以从 https://screeps.com/a/#!/account/auth-tokens 获取
 <img width="1324" alt="image" src="https://github.com/wper-golo/ScreepsDevSpace/assets/77011000/c2a4a0a9-0126-475a-be93-b7ec3c9f56e6">
 
