@@ -4,7 +4,12 @@ Screeps World 的代码开发环境搭建，用于快速部署CodeSpace，用Jet
 **三种运行模式**
 - 本地部署，JetBrains-Webstorm连接
 - docker部署，JetBrains-Gateway SSH连接（待更新）
-- GitHub CodeSpace部署（待更新）
+- GitHub CodeSpace部署
+## CodeSpace部署(推荐)
+1. Fork项目到本地
+
+
+
 ## 本地部署
 1. 本地环境准备
 本地环境 `node>=16` `npm>=8` (以上版本为实际使用可行版本，不代表其他版本不可用，建议先测试一下)
