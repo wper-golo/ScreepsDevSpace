@@ -106,8 +106,12 @@ token 可以从 https://screeps.com/a/#!/account/auth-tokens 获取
 - screeps world [中文文档](https://screeps-cn.github.io/index.html)
 - screeps world [api 文档](https://screeps-cn.github.io/api/)
 
+7. 将代码打包到本地（可选）
+```bash
+npm run local
+```
 
-7. push 你的代码到Screeps World
+8. push 你的代码到Screeps World
 ```bash
 npm run push
 ```
