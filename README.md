@@ -123,3 +123,6 @@ npm run push
 
 ## 参考教程
 - https://www.jianshu.com/p/895f05016ff2
+
+## ps：如果有帮助就给个Star 🙏
+<img width="53" alt="image" src="https://github.com/wper-golo/ScreepsDevSpace/assets/77011000/5fac4000-be39-4b4d-adda-8682d0e62816">
