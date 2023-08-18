@@ -12,11 +12,15 @@
     "rollup-plugin-screeps": "^1.0.1"
   },
   "scripts": {
+    "push": "rollup -cw --environment DEST:main",
     "build": "rollup -cw",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
   "type": "module",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "source-map": "^0.6.1"
+  }
 }
