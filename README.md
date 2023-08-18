@@ -7,7 +7,7 @@ Screeps World 的代码开发环境搭建，用于快速部署CodeSpace，用Jet
 - GitHub CodeSpace部署（待更新）
 ## 本地部署
 1. 本地环境准备
-本地环境 node>=16 npm>=8 (以上版本为实际使用可行版本，不代表其他版本不可用，建议先测试一下)
+本地环境 `node>=16` `npm>=8` (以上版本为实际使用可行版本，不代表其他版本不可用，建议先测试一下)
 2. 下载项目文件
 ```bash
 git clone https://github.com/wper-golo/ScreepsDevSpace.git
