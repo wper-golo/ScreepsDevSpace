@@ -2,8 +2,9 @@
 Screeps World 的代码开发环境搭建，用于快速部署CodeSpace，用JetBrains 连接
 # Features Info
 - 自动补全
-- rollup打包
-- 一行命令快速上传
+- rollup一行命令打包上传
+<img width="313" alt="image" src="https://github.com/wper-golo/ScreepsDevSpace/assets/77011000/4ecd741b-74a2-4118-bf22-1ce891d6a589">
+
 
 - ErrorMap跟踪报错
 ![image](https://github.com/wper-golo/ScreepsDevSpace/assets/77011000/d28e8a3d-9862-4e78-8001-aed865b5a852)
