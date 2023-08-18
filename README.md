@@ -18,7 +18,7 @@ Screeps World 的代码开发环境搭建
 - docker部署，JetBrains-Gateway SSH连接（待更新）
 
 
-## 本地部署（稳定）
+## 本地部署
 
 ### 1. 本地环境准备
 
