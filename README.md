@@ -119,7 +119,7 @@ npm run push
 
 # 一些声明
 ## 开发背景
-本项目是本人通过对大佬[HoPGoldy](https://www.jianshu.com/u/3ee5572a4346)的简书教程进行的归纳整理，因为一些包版本等问题走了一些弯路，希望来玩Screeps World的玩家不要被开发环境不够优雅这种问题劝退希望大家可以轻松体验这款好玩的游戏。
+本项目是本人通过对大佬[HoPGoldy](https://www.jianshu.com/u/3ee5572a4346)的简书教程进行的归纳整理，因为一些包版本等问题走了一些弯路，希望来玩Screeps World的玩家不要被开发环境不够优雅这种问题劝退，希望大家可以开心体验这款好玩的游戏。
 
 ## 参考教程
 - https://www.jianshu.com/p/895f05016ff2
