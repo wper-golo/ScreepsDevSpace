@@ -1,23 +1,17 @@
 import clear from 'rollup-plugin-clear'
 import screeps from 'rollup-plugin-screeps'
 import copy from 'rollup-plugin-copy'
-import conf from "./.secret.json" assert { type: "json" };
+import typescript from 'rollup-plugin-typescript2'
 import resolve from '@rollup/plugin-node-resolve'
 import commonjs from '@rollup/plugin-commonjs'
+import { createRequire } from 'node:module';
+const require = createRequire(import.meta.url);
 
-let config;
-// 根据指定的目标获取对应的配置项
-if (!process.env.DEST) {
-    console.log("未指定目标,代码将被编译但不会上传");
-} else if (!conf[process.env.DEST]) {
-    throw new Error("无效目标,请检查 secret.json 中是否包含对应配置");
+let config
+if (!process.env.DEST) console.log("未指定目标, 代码将被编译但不会上传")
+else if (!(config = require("./.secret.json")[process.env.DEST])) {
+    throw new Error("无效目标，请检查 secret.json 中是否包含对应配置")
 }
-config = conf[process.env.DEST]
-
-// if (!process.env.DEST) console.log("未指定目标, 代码将被编译但不会上传")
-// else if (!(config = require("./.secret.json")[process.env.DEST])) {
-//     throw new Error("无效目标，请检查 secret.json 中是否包含对应配置")
-// }
 
 // 根据指定的配置决定是上传还是复制到文件夹
 const pluginDeploy = config && config.copyPath ?
@@ -42,7 +36,7 @@ const pluginDeploy = config && config.copyPath ?
     screeps({ config, dryRun: !config })
 
 export default {
-    input: 'src/main.js',
+    input: 'src/main.ts',
     output: {
         file: 'dist/main.js',
         format: 'cjs',
@@ -55,6 +49,8 @@ export default {
         resolve(),
         // 模块化依赖
         commonjs(),
+        // 编译 ts
+        typescript({ tsconfig: "./tsconfig.json" }),
         // 执行上传或者复制
         pluginDeploy
     ]

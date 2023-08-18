@@ -708,7 +708,7 @@ var util$5 = {};
 
 	  return normalize(sourceURL);
 	}
-	exports.computeSourceURL = computeSourceURL; 
+	exports.computeSourceURL = computeSourceURL;
 } (util$5));
 
 var arraySet = {};
@@ -1462,7 +1462,7 @@ var binarySearch$1 = {};
 	  }
 
 	  return index;
-	}; 
+	};
 } (binarySearch$1));
 
 var quickSort$1 = {};
@@ -3159,7 +3159,6 @@ var SourceMapConsumer = sourceMapConsumer.SourceMapConsumer;
  * @see https://github.com/screepers/screeps-typescript-starter/blob/master/src/utils/ErrorMapper.ts
  */
 
-
 // 缓存 SourceMap
 let consumer = null;
 
@@ -3245,9 +3244,15 @@ const errorMapper = function (next) {
     }
 };
 
-const loop = errorMapper(() => {
-    // 从这里开始写代码
-});
+/**
+ * 显示 hello world
+ */
+const sayHello = function () {
+    console.log('hello world');
+    throw new Error('我是 sayHello 里的报错');
+};
 
-exports.loop = loop;
+module.exports.loop = errorMapper(() => {
+    sayHello();
+});
 //# sourceMappingURL=main.js.map
