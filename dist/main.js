@@ -3245,15 +3245,8 @@ const errorMapper = function (next) {
     }
 };
 
-/**
- * 打印 hello world
- */
-const sayHello = function () {
-    console.log('hello world');
-};
-
 const loop = errorMapper(() => {
-    sayHello();
+    // 从这里开始写代码
 });
 
 exports.loop = loop;
