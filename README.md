@@ -22,7 +22,10 @@ Screeps World 的代码开发环境搭建，用于快速部署CodeSpace，用Jet
 2. 开启Github CodeSpace
 <img width="1373" alt="image" src="https://github.com/wper-golo/ScreepsDevSpace/assets/77011000/b9720698-9dd3-4e0a-959a-fa5889cbee10">
 
-Tips：CodeSpace配置最好上 4Core 16RAM的配置，防止JB的Gateway连接不上，并选择一个区域（根据你访问github的ip地址选择ping延迟较小的节点）
+Tips：
+- CodeSpace配置最好上 4Core 16RAM的配置，防止JB的Gateway连接不上，并选择一个区域（根据你访问github的ip地址选择ping延迟较小的节点）
+- CodeSpace 使用完毕记得Stop，防止产生不必要的消费。
+
 
 3. JetBrains Gateway连接CodeSpace
 <img width="800" alt="image" src="https://github.com/wper-golo/ScreepsDevSpace/assets/77011000/7721325a-b54e-45b6-8581-3e093c2a095e">
