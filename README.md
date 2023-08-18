@@ -7,7 +7,7 @@ Screeps World 的代码开发环境搭建，用于快速部署CodeSpace，用Jet
 
 
 - ErrorMap跟踪报错
-![image](https://github.com/wper-golo/ScreepsDevSpace/assets/77011000/d28e8a3d-9862-4e78-8001-aed865b5a852)
+<img width="313" alt="image" src="https://github.com/wper-golo/ScreepsDevSpace/assets/77011000/d28e8a3d-9862-4e78-8001-aed865b5a852">
 
 - 支持ts开发
 
