@@ -1,5 +1,5 @@
 # ScreepsDevSpace
-Screeps World 的代码开发环境搭建，用于快速部署CodeSpace，用JetBrains 连接
+Screeps World 的代码开发环境搭建
 # Features Info
 - 自动补全
 - rollup一行命令打包上传
