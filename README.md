@@ -28,7 +28,7 @@ Tips：
 - CodeSpace 使用完毕记得Stop，防止产生不必要的消费
 
 
-3. JetBrains Gateway连接CodeSpace
+3. JetBrains Gateway连接CodeSpace(可选)
 <img width="800" alt="image" src="https://github.com/wper-golo/ScreepsDevSpace/assets/77011000/7721325a-b54e-45b6-8581-3e093c2a095e">
 Tips：
 - JB GateWay连接记得开启自动保存功能，因为Gateway暂时是beta版，有可能会出现一些问题导致崩溃
