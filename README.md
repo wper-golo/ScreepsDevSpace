@@ -1,5 +1,15 @@
 # ScreepsDevSpace
 Screeps World 的代码开发环境搭建，用于快速部署CodeSpace，用JetBrains 连接
+# Features Info
+- 自动补全
+- rollup打包
+- 一行命令快速上传
+
+- ErrorMap跟踪报错
+![image](https://github.com/wper-golo/ScreepsDevSpace/assets/77011000/d28e8a3d-9862-4e78-8001-aed865b5a852)
+
+- 支持ts开发
+
 # How To Use
 **三种运行模式**
 - 本地部署，JetBrains-Webstorm连接
@@ -7,8 +17,48 @@ Screeps World 的代码开发环境搭建，用于快速部署CodeSpace，用Jet
 - GitHub CodeSpace部署
 ## CodeSpace部署(推荐)
 1. Fork项目到本地
+<img width="1461" alt="image" src="https://github.com/wper-golo/ScreepsDevSpace/assets/77011000/88d3b41e-9309-49f8-8247-3d6f816de972">
 
+2. 开启Github CodeSpace
+<img width="1373" alt="image" src="https://github.com/wper-golo/ScreepsDevSpace/assets/77011000/b9720698-9dd3-4e0a-959a-fa5889cbee10">
 
+Tips：CodeSpace配置最好上 4Core 16RAM的配置，防止JB的Gateway连接不上，并选择一个区域（根据你访问github的ip地址选择ping延迟较小的节点）
+
+3. JetBrains Gateway连接CodeSpace
+<img width="800" alt="image" src="https://github.com/wper-golo/ScreepsDevSpace/assets/77011000/7721325a-b54e-45b6-8581-3e093c2a095e">
+
+4. 修改 ./.secret.json 文件
+
+Tips：**请保护好自己的token，不要push到github上，造成一些不必要的麻烦**
+
+```json
+{
+    "main": {
+        "token": "你的 screeps token 填在这里",
+        "protocol": "https",
+        "hostname": "screeps.com",
+        "port": 443,
+        "path": "/",
+        "branch": "default"
+    },
+    "local": {
+        "copyPath": "你要上传到的游戏路径，例如 C:\\Users\\DELL\\AppData\\Local\\Screeps\\scripts\\screeps.com\\default"
+    }
+}
+```
+注意需要填写里边的 `main.token` 字段和 `local.copyPath` 字段（如果你不想用这种方式的话可以直接不填) `copyPath` 可以通过游戏客户端控制台左下角的 `Open local folder` 按钮找到。
+
+5. 在 ./src/ 文件夹下自由编写你Screeps Codes！
+Tips: 如果想要保留errorMapper的功能，就不要修改./src/modules/errorMapper中的内容。
+新手入门Screeps World：
+- 可以参考[大佬教程](https://www.jianshu.com/p/5431cb7f42d3)
+- screeps world [中文文档](https://screeps-cn.github.io/index.html)
+- screeps world [api 文档](https://screeps-cn.github.io/api/)
+
+6. push 你的代码到Screeps World
+```bash
+npm run push
+```
 
 ## 本地部署
 1. 本地环境准备
