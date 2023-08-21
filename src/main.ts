@@ -145,8 +145,9 @@ export const loop = function () {
         }
         if (creep.memory.role == 'operator') {
             const reactants = {Z:500, energy:200}
-            const product = {zynthium_bar:100}
-            roleOperator.runProduction(creep, reactants, product)
+            const products = {RESOURCE_ZYNTHIUM_BAR:100}
+            roleOperator.runProduction(creep, reactants, products)
+            roleOperator.runChargeNuker(creep)
         }
     }
 

@@ -102,7 +102,11 @@ interface Reactant {
 }
 
 // Factory 生成物 接口
+// interface Product {
+//     // eg: RESOURCE_ZYNTHIUM_BAR : 100
+//     [key: string]: number
+// }
 interface Product {
     // eg: RESOURCE_ZYNTHIUM_BAR : 100
-    [key: string]: number
+    [key:string]: number
 }
