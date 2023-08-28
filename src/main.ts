@@ -145,9 +145,14 @@ export const loop = function () {
         }
         if (creep.memory.role == 'operator') {
             const reactants = {Z:500, energy:200}
-            const products = {RESOURCE_ZYNTHIUM_BAR:100}
+            const products = {"zynthium_bar":100}
             roleOperator.runProduction(creep, reactants, products)
-            roleOperator.runChargeNuker(creep)
+            // roleOperator.runChargeNuker(creep)
+
+            //出售订单
+            // roleOperator.runTerminal(creep, ORDER_SELL, "zynthium_bar", 346.137, 100000, "E15N7")
+            //成交订单 Game.market.deal('64ec1bda3ef8e514dc347fc9', 2500, "E15N7");
+            //取消订单 Game.market.cancelOrder("64e658faf7745e5215fa5c60")
         }
     }
 
@@ -158,7 +163,6 @@ export const loop = function () {
             Tower.run(<Id<StructureTower>>MemStructure.id)
         }
     }
-
 
     // 全局资源监控
     stateScanner()

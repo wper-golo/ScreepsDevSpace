@@ -1,4 +1,4 @@
-import {Harvest_advance} from "@/roles/motion/harvest_advance";
+import {Harvest_advance, Harvest_From_Storage} from "@/roles/motion/harvest_advance";
 import {Unused_Move} from "@/roles/motion/unused_move";
 
 export class roleBuilder  {
@@ -24,7 +24,7 @@ export class roleBuilder  {
             }
         } else {
             creep.say('Bd:🔄');
-            Harvest_advance(creep)
+            Harvest_From_Storage(creep)
         }
         // Unused_Move(creep)
     }

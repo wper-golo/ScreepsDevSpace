@@ -12,7 +12,7 @@ function findClosestSourceWithEnergy(creep: Creep): Source | null {
     return null;
 }
 
-function Harvest_From_Container(creep):boolean {
+function Harvest_From_Container(creep:Creep):boolean {
 
     const container = Get_container(creep)
     if (container == undefined || container.store[RESOURCE_ENERGY] == 0){
@@ -23,10 +23,10 @@ function Harvest_From_Container(creep):boolean {
     }
 }
 
-function Harvest_from_energy(creep):boolean {
-    // return false
+function Harvest_From_Energy(creep:Creep):boolean {
     if(creep.memory.dst == null){
         const energy = creep.pos.findClosestByRange(FIND_DROPPED_RESOURCES);
+        console.log("Debug:",creep.name,energy)
         if (energy == null || energy.pos.roomName != creep.pos.roomName){
             console.log("Can't find Energy!")
             return false
@@ -35,8 +35,9 @@ function Harvest_from_energy(creep):boolean {
         creep.memory.dst = energy.id
 
     }
-
+    console.log("Debug:",creep.name,creep.memory.dst)
     const energy = Game.getObjectById<Resource>(creep.memory.dst)
+    console.log("Debug:",creep.name,energy)
     if(energy==undefined){
         // console.log("Can't find creep.dst Energy!")
         return false
@@ -48,20 +49,15 @@ function Harvest_from_energy(creep):boolean {
     //     creep.memory.dst = null
     // }
     creep.say("Egy🤤")
-    if(creep.pickup(energy, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE){
+    if(creep.pickup(energy) == ERR_NOT_IN_RANGE){
         creep.moveTo(energy, {visualizePathStyle: {stroke: '#ffaa00'}})
     }
 
 }
 
-function Harvest_From_Storage(creep):boolean {
-    const storage = creep.pos.findClosestByRange(FIND_STRUCTURES, {
-        filter: (structure) => {
-            return structure.structureType == STRUCTURE_STORAGE &&
-                structure.store.getCapacity() > 0;
-        }
-    });
-    console.log("DEBUG:trans",storage)
+export function Harvest_From_Storage(creep:Creep):boolean {
+    const storage = creep.room.storage
+    // console.log("DEBUG:trans",storage)
     if (storage == undefined || storage.store[RESOURCE_ENERGY] == 0){
         return false
     }
@@ -92,8 +88,7 @@ export function Harvest_org(creep:Creep):boolean{
 
  * **/
 export function Harvest_advance(creep:Creep):void{
-
-    if ( Harvest_from_energy(creep) == false ){
+    if ( Harvest_From_Energy(creep) == false ){
         if( Harvest_From_Container(creep) == false){
             if(Harvest_org(creep)){
                 // 触发原始harvest模式 , 报警
@@ -110,7 +105,7 @@ export function Harvest_advance(creep:Creep):void{
 
 }
 export function Harvest_Transporter(creep:Creep):void{
-    if ( Harvest_from_energy(creep) == false ){
+    if ( Harvest_From_Energy(creep) == false ){
         if( Harvest_From_Container(creep) == false){
             if(Harvest_From_Storage(creep) == false){
                 if(Harvest_org(creep) == false){
@@ -127,8 +122,6 @@ export function Harvest_Transporter(creep:Creep):void{
 
     }
 }
-
-
 
 
 

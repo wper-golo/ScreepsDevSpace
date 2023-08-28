@@ -56,6 +56,19 @@ function GetOpPos(creep, factory, terminal, storage) {
     return position
 }
 
+// Operator移动到指定位置
+function MoveToOpPos(creep) {
+    const factory :StructureFactory = creep.pos.findClosestByRange(FIND_STRUCTURES, {
+        filter: (structure) => {
+            return (
+                structure.structureType == STRUCTURE_FACTORY
+            )
+        }
+    })
+    const terminal = creep.room.terminal
+    const storage = creep.room.storage
+    creep.moveTo(GetOpPos(creep,factory,terminal,storage), {visualizePathStyle: {stroke: '#ffffff'}})
+}
 
 export class roleOperator {
 
@@ -66,16 +79,7 @@ export class roleOperator {
     //Tips: 一定要按公式填写反应物和生成物
     public static runProduction = function (creep: Creep, reactants :Reactant, products :Product) {
         // 移动到指定位置
-        const factory :StructureFactory = creep.pos.findClosestByRange(FIND_STRUCTURES, {
-            filter: (structure) => {
-                return (
-                    structure.structureType == STRUCTURE_FACTORY
-                )
-            }
-        })
-        const terminal = creep.room.terminal
-        const storage = creep.room.storage
-        creep.moveTo(GetOpPos(creep,factory,terminal,storage), {visualizePathStyle: {stroke: '#ffffff'}})
+        MoveToOpPos(creep)
 
         //factory produce 试运行，看错误码
         
@@ -95,9 +99,17 @@ export class roleOperator {
         // })
 
             // 异常状态1：反应物不足
-        const product = Object.keys(products)[0]
-
-        if (factory.produce(<CommodityConstant | MineralConstant | RESOURCE_ENERGY | RESOURCE_GHODIUM>product) == ERR_NOT_ENOUGH_RESOURCES){
+        const product = <CommodityConstant | MineralConstant | RESOURCE_ENERGY | RESOURCE_GHODIUM>Object.keys(products)[0]
+        const factory :StructureFactory = creep.pos.findClosestByRange(FIND_STRUCTURES, {
+            filter: (structure) => {
+                return (
+                    structure.structureType == STRUCTURE_FACTORY
+                )
+            }
+        })
+        const storage = creep.room.storage
+        // console.log("DEBUG:",factory.produce(product))
+        if (factory.produce(product) == ERR_NOT_ENOUGH_RESOURCES){
             for(let reactant in reactants){
                 // factory 存储资源小于需求
                 if (factory.store[reactant] < reactants[reactant]){
@@ -117,7 +129,7 @@ export class roleOperator {
             }
         }
         // 正常状态： 成功生产
-        if (factory.produce(<CommodityConstant | MineralConstant | RESOURCE_ENERGY | RESOURCE_GHODIUM>product) == OK){
+        if (factory.produce(product) == OK){
             creep.withdraw(factory, <ResourceConstant>product)
             creep.memory.working = false
         }
@@ -142,18 +154,10 @@ export class roleOperator {
     //ChargeNuker
     public static runChargeNuker = function (creep: Creep) {
         // 移动到指定位置
-        const factory = creep.pos.findClosestByRange(FIND_STRUCTURES, {
-            filter: (structure) => {
-                return (
-                    structure.structureType == STRUCTURE_FACTORY
-                )
-            }
-        })
-        const terminal = creep.room.terminal
-        const storage = creep.room.storage
-        creep.moveTo(GetOpPos(creep,factory,terminal,storage), {visualizePathStyle: {stroke: '#ffffff'}})
+        MoveToOpPos(creep)
 
         // 检测nuker是否需要充能
+        const storage = creep.room.storage
         const nuker = creep.pos.findClosestByRange(FIND_STRUCTURES, {
             filter: (structure) => {
                 return (
@@ -161,11 +165,40 @@ export class roleOperator {
                 )
             }
         })
-        // 检测storage中的能量是否大于800k，大于则从Storage中取出能量，进行充能
+        // 检测storage中的能量是否大于500k，大于则从Storage中取出能量，进行充能
         if (storage.store[RESOURCE_ENERGY] > 500000){
             creep.withdraw(storage, RESOURCE_ENERGY, creep.store.getFreeCapacity(RESOURCE_ENERGY))
             creep.transfer(nuker, RESOURCE_ENERGY)
         }
+    }
+
+    //Terminal transactions
+    public static runTerminal = function (creep: Creep, type: string, resource: ResourceConstant,price: number , amount: number, roomName: string) {
+        // 移动到指定位置
+        MoveToOpPos(creep)
+        // 检测terminal中的资源是否大于指定数量，大于则从terminal中取出指定数量，进行充能
+        const terminal = creep.room.terminal
+        const storage = creep.room.storage
+        creep.say("OP:ts✋")
+        //从storage中取出指定数量的资源，放入terminal中
+        if (terminal.store[resource] < amount){
+            if (creep.store.getFreeCapacity() > 0){
+                let surplus = amount - terminal.store[resource]
+                let getAmount = creep.store.getFreeCapacity()
+                // 先取 总需要量/creep的容量的余数能量 ，如果余数为0 那么就取creep的容量
+                if (surplus % getAmount != 0){
+                    creep.withdraw(storage, resource, surplus % getAmount)
+                }else{
+                    creep.withdraw(storage, resource, getAmount)
+                }
+            }
+            creep.transfer(terminal, resource)
+        }
+        else{
+            //console.log 打印订单 Game.market.createOrder({type: <ORDER_BUY | ORDER_SELL>type, resourceType: resource, price: price, totalAmount: amount, roomName: roomName});
+            console.log("Game.market.createOrder({type:"+"\""+<ORDER_BUY | ORDER_SELL>type+"\""+" , resourceType: "+"\""+resource+"\""+", price: "+"\""+price+"\""+", totalAmount: "+"\""+amount+"\""+", roomName: "+"\""+roomName+"\""+"});")
+        }
+
     }
 
 }

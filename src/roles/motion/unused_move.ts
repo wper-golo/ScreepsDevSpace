@@ -1,3 +1,3 @@
-export function Unused_Move(creep):void {
-    creep.moveTo(19,20, {visualizePathStyle: {stroke: '#ffaa00'}});
+export function Unused_Move(creep:Creep):void {
+    creep.moveTo(15,24, {visualizePathStyle: {stroke: '#ffaa00'}});
 }
